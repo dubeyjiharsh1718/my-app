@@ -23,7 +23,7 @@ import { createContext } from 'react';
 import Counter from './Components/Counter';
 
 const data = createContext();
-//New Commentssssss
+//New Comments
 const data1 = createContext();
 
 const namedata = createContext();
