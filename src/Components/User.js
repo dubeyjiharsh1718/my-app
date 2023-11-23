@@ -25,8 +25,8 @@ useEffect (()=>{
 
    <h1>This is useState{count}</h1>
    <h1>This is useState{dat}</h1>
-   <button onClick={clickbutton}>ClickMe</button>
-   <button onClick={clickbutton2}>ClickMe</button>
+   <button onClick={clickbutton}>ClickMeIncrement</button>
+   <button onClick={clickbutton2}>ClickMeDecrement</button>
    <button onClick={clickbutton3}>Clickhere</button>
  </>
 

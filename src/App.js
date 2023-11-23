@@ -16,11 +16,21 @@ import About from "./About";
 import { Link,useNavigate } from 'react-router-dom';
 import AboutMain from './Components/AboutMain';
 import AboutTeam from './Components/AboutTeam';
- import User from "./Components/User"
 import Profile from './Components/Profile';
 import Child1 from './Components/Child1';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import Counter from './Components/Counter';
+import AddUser from './Components/AddUser';
+import UserList from "./Components/UserList"
+import { AppContext } from './context';
+import Login from './Components/Login';
+import Protuctive from './Components/Protuctive';
+import User from './Components/User';
+
+//Add cart practice
+
+
+
 
 const data = createContext();
 //New Comments
@@ -29,6 +39,29 @@ const data1 = createContext();
 const namedata = createContext();
 
 function App() {
+//add cart practice 
+const [ users, setUsers ] = useState([]);
+	
+const dispatchUserEvent = (actionType, payload) => {
+  switch (actionType) {
+    case 'ADD_USER':
+      setUsers([ ...users, payload.newUser ]);
+      return;
+    case 'REMOVE_USER':
+      setUsers(users.filter(user => user.id !== payload.userId));
+      return;
+    default:
+      return;
+  }
+};
+
+
+
+
+
+
+
+
   const name = "harsh"
   const gender = "male"
 
@@ -40,9 +73,11 @@ function App() {
     navigate("./about")
   }
   return (
-   
-    
-  <div className="App">
+ 
+	<div className="App">
+    	
+
+
      <>
      <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -60,6 +95,10 @@ function App() {
 <li class="nav-item">
 <Link to="/Contact" class="nav-link active">Contact</Link>
         </li>
+        
+<li class="nav-item">
+<Link to="/login" class="nav-link active">Login</Link>
+        </li>
       </ul>
      
     </div>
@@ -67,6 +106,16 @@ function App() {
 </nav>
 
    </>
+
+
+
+   {/* //add cart */}
+   <AppContext.Provider value={{ users, dispatchUserEvent }}>
+				<AddUser />
+				<UserList />
+			</AppContext.Provider>
+
+<User />
    <Counter />
    <>
 <data.Provider value={name}>
@@ -79,12 +128,12 @@ function App() {
 </>
 
  <Routes>
-  <Route path='/home' element={<Home />} />
+  <Route path='/home' element={<Protuctive Component={Home} />} />
   <Route path='/contact' element={<Contact />} />
   <Route path='/about' element={<About />} />
   <Route path='/main' element={<AboutMain />} />
   <Route path='/aboutteam' element={<AboutTeam />} />
-  <Route path='/user/:name' element={<User />} />
+  <Route path='/login' element={<Login />} />
  </Routes>
 <li><Link to="/user/Harsh">Harsh</Link></li>
 <li><Link to="/user/Shivam">SHivam</Link></li>
@@ -106,6 +155,9 @@ function App() {
     <Blogpost />
     <LoginForm></LoginForm>
     <AgeCheck></AgeCheck>
+
+
+    
 
   </div>
   );

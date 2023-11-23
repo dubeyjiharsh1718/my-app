@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+/* styles.css */
+
+.light-theme {
+  background-color: white;
+  color: black;
+}
+
+.dark-theme {
+  background-color: black;
+  color: white;
+}
